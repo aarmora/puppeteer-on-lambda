@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node ./dist/indexLocal.js",
-    "zip": "tsc && 7z a -mm=Deflate -mfb=258 -mpass=15 -r function.zip ./dist/*  node_modules/",
-    "sendToLambda": "npm run zip && aws s3 cp function.zip s3://puppeteer-lambda-jordan && aws lambda update-function-code --function-name puppeteerTest --s3-bucket puppeteer-lambda-jordan --s3-key function.zip"
+    "zip": "tsc && 7z a -r function.zip ./dist/*  node_modules/",
+    "sendToLambda": "npm run zip && aws s3 cp function.zip s3://chrome-aws && aws lambda update-function-code --function-name puppeteer-on-lambda --s3-bucket chrome-aws --s3-key function.zip"
   },
   "author": "Jordan Hansen",
   "license": "ISC",
@@ -16,7 +15,7 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "chrome-aws-lambda": "^5.5.0",
-    "puppeteer-core": "^5.5.0"
+    "chrome-aws-lambda": "^7.0.0",
+    "puppeteer-core": "^7.0.3"
   }
 }

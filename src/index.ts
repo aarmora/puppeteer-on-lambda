@@ -1,9 +1,18 @@
 import chromium from 'chrome-aws-lambda';
 
-exports.handler = async function () {
-    await run();
+exports.handler = async (event) => {
+    console.log('Received', event);
 
-    return;
+    console.log('event query param', event.queryStringParameters?.pizza);
+
+    const title = await run();
+
+    const response = {
+        statusCode: 200,
+        body: JSON.stringify({ title: title })
+    };
+
+    return response;
 }
 
 export async function run() {
@@ -23,11 +32,7 @@ export async function run() {
 
     console.log('First title', title);
 
-    await page.click('.entry-title');
-
-    title = await page.$eval('title', element => element.textContent);
-
-    console.log('Second title', title);
-
     await browser.close();
+
+    return title;
 }
