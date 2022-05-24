@@ -1,6 +1,6 @@
 import chromium from 'chrome-aws-lambda';
 
-exports.handler = async (event) => {
+export async function handler(event) {
     console.log('Received', event);
 
     console.log('event query param', event.queryStringParameters?.pizza);

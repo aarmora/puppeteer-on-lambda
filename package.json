@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "zip": "tsc && 7z a -r function.zip ./dist/*  node_modules/",
-    "sendToLambda": "npm run zip && aws s3 cp function.zip s3://chrome-aws && aws lambda update-function-code --function-name puppeteer-on-lambda --s3-bucket chrome-aws --s3-key function.zip"
+    "sendToLambda": "npm run zip && aws s3 cp function.zip s3://chrome-aws && aws lambda update-function-code --function-name puppeteer-on-lambda --s3-bucket chrome-aws --s3-key function.zip && rm function.zip"
   },
   "author": "Jordan Hansen",
   "license": "ISC",
@@ -15,7 +15,7 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "chrome-aws-lambda": "^7.0.0",
-    "puppeteer-core": "^7.0.3"
+    "chrome-aws-lambda": "^10.1.0",
+    "puppeteer-core": "^10.0.0"
   }
 }
